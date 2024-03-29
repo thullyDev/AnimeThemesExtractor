@@ -1,0 +1,9 @@
+todo.txt
+notes.txt
+temp.txt
+env
+*.env
+*.log
+**/__pycache__/
+*.pyc
+*.py[cod]
