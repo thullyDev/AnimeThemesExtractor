@@ -15,10 +15,10 @@ class ApiHandler:
     async def get(self, endpoint: str, params: Optional[Dict[str, str]] = None, **kwargs: Any) -> Dict[str, Any]:
         return await self.request(endpoint, params=params, method='GET')
 
-    async def post(self, endpoint: str, data: Optional[Dict[str, str]] = None, json: Optional[Dict[str, Any]] = None, **kwargs: Any) -> Dict[str, Any]:
+    async def post(self, endpoint: str, data: Optional[Dict[str, str]] = None, **kwargs: Any) -> Dict[str, Any]:
         return await self.request(endpoint, data=data, method='POST')
 
-    async def put(self, endpoint: str, data: Optional[Dict[str, str]] = None, json: Optional[Dict[str, Any]] = None, **kwargs: Any) -> Dict[str, Any]:
+    async def put(self, endpoint: str, data: Optional[Dict[str, str]] = None, **kwargs: Any) -> Dict[str, Any]:
         return await self.request(endpoint, data=data, method='PUT')
 
     async def delete(self, endpoint: str, **kwargs: Any) -> Dict[str, Any]:
