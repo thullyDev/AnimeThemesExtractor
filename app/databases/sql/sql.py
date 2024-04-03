@@ -1,5 +1,4 @@
-from . import get_models
-# from django.forms.models import model_to_dict
+from .setup import get_models
 from sqlalchemy.exc import IntegrityError
 
 class Sql:
@@ -39,29 +38,29 @@ class Sql:
 		return True
 
 	def get_instance(self, *, unit, **kwargs): 
-		model = self.get_model(unit)
+		pass
+		# model = self.get_model(unit)
 
-		try:
-			data = model.objects.get(**kwargs)
+		# try:
+		# 	data = model.objects.get(**kwargs)
 
-			return data
-		except model.DoesNotExist:
-			return None
+		# 	return data
+		# except model.DoesNotExist:
+		# 	return None
 
-		return model.objects.get(id=unique_id)
+		# return model.objects.get(id=unique_id)
 
 	def get_model(self, unit): return get_models(unit)
 
-	def get_instance_as_dict(self, instance):
-		return model_to_dict(instance)
-
-	def sql_get_all(self, unit):
-		model = self.get_model(unit)
-		return list(model.objects.values())
+	def sql_get_all(self, *, unit):
+		pass
+		# model = self.get_model(unit)
+		# return list(model.objects.values())
 			
 	def sql_get_query(self, *, unit, **kwargs):
-	    model = self.get_model(unit)
+		pass
+	    # model = self.get_model(unit)
 	    
-	    values = model.objects.filter(**kwargs)
+	    # values = model.objects.filter(**kwargs)
 	    
-	    return list(values)
+	    # return list(values)
