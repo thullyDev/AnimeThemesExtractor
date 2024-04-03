@@ -1,7 +1,6 @@
 from . import get_models
 # from django.forms.models import model_to_dict
-# from django.db import IntegrityError
-
+from sqlalchemy.exc import IntegrityError
 
 class Sql:
 	def sql_get(self, unit, as_dict=True, **kwargs):
