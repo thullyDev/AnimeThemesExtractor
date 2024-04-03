@@ -9,9 +9,10 @@ class Sql:
 
 		if not instance: return None
 
-		data = self.get_instance_as_dict(instance) if as_dict else instance
+		if as_dict == False:
+			return instance
 
-		return data
+		return self.get_instance_as_dict(instance) 
 
 	def sql_set(self, data, *, unit):
 		model = self.get_model(unit)
@@ -50,9 +51,7 @@ class Sql:
 
 		return model.objects.get(id=unique_id)
 
-	def get_model(self, unit):
-		unit = get_models(unit)
-		return unit
+	def get_model(self, unit): return get_models(unit)
 
 	def get_instance_as_dict(self, instance):
 		return model_to_dict(instance)
