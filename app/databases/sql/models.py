@@ -1,4 +1,4 @@
-from typing import Optional, Any, Dict
+from typing import Optional, Any, Dict,Type, Union
 from sqlmodel import Field, SQLModel
 
 class anime(SQLModel):
@@ -29,4 +29,20 @@ class songs(SQLModel):
     basename_backup: Optional[str] = Field(default=None, nullable=True)
     path_backup: Optional[str] = Field(default=None, nullable=True)
     link_backup: Optional[str] = Field(default=None, nullable=True)
+
+def get_models() -> Dict[ str, Union[ Type[anime], Type[songs] ]]:
+    return {
+        "anime": anime,
+        "songs": songs,
+    }
+
+def get_model(unit: str) -> Union[ Type["anime"], Type["songs"] ]: 
+    models = get_models()
+    model = models.get(unit)
+
+    if model:
+        return model
+    
+    raise Exception(f"No model name: {unit}") 
+
 
