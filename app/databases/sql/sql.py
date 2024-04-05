@@ -1,12 +1,10 @@
-from typing import Dict, Any, Sequence, Type, Union
+from typing import Dict, Any, Sequence, Union
 from sqlmodel import Session, select, SQLModel
-from sqlalchemy.exc import IntegrityError
-from . import get_models, get_model
 from .setup import engine
 
 class Sql:
-	def __init__(self, unit) -> None:
-		self.model = get_model(unit)
+	def __init__(self, model) -> None:
+		self.model = model
 
 	def sql_set(self, data: Dict[str, Any], *, unit: str) -> SQLModel:
 		with Session(engine) as session:
@@ -15,6 +13,14 @@ class Sql:
 			session.commit()
 			session.refresh(instance)
 			return instance
+
+	def sql_set_all(self, data: list[Dict[str, Any]], *, unit: str) -> None:
+		for item in data:
+			with Session(engine) as session:
+				instance = self.model.model_validate(**data)
+				session.add(instance)
+				session.commit()
+				session.refresh(instance)
 
 	def sql_get(self, *, unit: str, **kwargs) -> Union[SQLModel, None]:
 		with Session(engine) as session:

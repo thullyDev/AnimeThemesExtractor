@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from typing import Any, Dict, List, Optional
 from ..services import get_top_animes, get_animes
+from ..databases import Sql
 from pprint import pprint
 
 router = APIRouter(prefix="/extract")

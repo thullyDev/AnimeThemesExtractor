@@ -1,5 +1,8 @@
+import sys
+sys.path.append("...")
+
 from typing import Any, Dict, Union
-from app.handlers.json_handler import JsonHandler
+from handlers import JsonHandler
 
 jhandler = JsonHandler(
         FILENAME="cache",

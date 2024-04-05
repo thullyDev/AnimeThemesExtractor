@@ -10,6 +10,3 @@ from .errors import (
 	SUCCESSFUL_MSG,
 	BAD_REQUEST_MSG
 )
-from .configs import (
-	SQL_URL,
-)

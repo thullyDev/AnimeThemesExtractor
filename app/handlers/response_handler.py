@@ -1,6 +1,10 @@
 from typing import Any, Dict, Union
 from fastapi.responses import JSONResponse, Response
-from ..resources import (
+
+import sys
+sys.path.append("..")
+
+from resources import (
     FORBIDDEN, 
     CRASH, 
     SUCCESSFUL, 
