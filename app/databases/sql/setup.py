@@ -1,5 +1,8 @@
+from typing import Any
 from sqlmodel import SQLModel, create_engine
-from ...resources import SQL_URL
+from decouple import config
+
+SQL_URL: Any = config("SQL_URL")
 
 connect_args = {"check_same_thread": False}
 engine = create_engine(SQL_URL, echo=True, connect_args=connect_args)
