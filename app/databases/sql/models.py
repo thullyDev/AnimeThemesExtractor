@@ -1,7 +1,7 @@
 from typing import Optional, Any, Dict,Type, Union
 from sqlmodel import Field, SQLModel
 
-class anime(SQLModel):
+class anime(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True, nullable=False)
     at_id: Optional[int] = Field(default=None, unique=True) #  anime_themes_id        
     mal_id: Optional[int] = Field(default=None, unique=True)
@@ -15,7 +15,7 @@ class anime(SQLModel):
     episodes: Optional[int] = Field()
     score: Optional[int] = Field(default="")
 
-class songs(SQLModel):
+class songs(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True, nullable=False)
     at_id: Optional[int] = Field(unique=True) #  anime_themes_id    
     slug: str = Field(nullable=False)

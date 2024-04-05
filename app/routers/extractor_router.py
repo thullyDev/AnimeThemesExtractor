@@ -1,10 +1,14 @@
 from fastapi import APIRouter
 from typing import Any, Dict, List, Optional
+
+from sqlmodel import SQLModel
 from ..services import get_top_animes, get_animes
-from ..databases import Sql
+from ..databases import Sql, anime, songs
 from pprint import pprint
 
 router = APIRouter(prefix="/extract")
+anime_table: Sql = Sql(model=anime)
+songs_table: Sql = Sql(model=songs)
 
 @router.get("/start")
 async def start() -> Dict[str, Any]:
@@ -47,9 +51,11 @@ async def process_anime(anime: Dict[str, Any]) -> Optional[Dict[str, Any]]:
      anime_theme: Dict[str, Any] = anime_themes[0]
      data["at_id"] = anime_theme["id"] 
      data["slug"] = anime_theme["slug"] 
+
+     anime_instance: SQLModel = anime_table.sql_set(data)
      songs: List[Dict[str, Any]] = []
 
-     anime_id = ''
+     anime_id = anime_instance.id
 
      for theme in anime_theme["animethemes"]:
           theme_data: Dict[str, Any] = {
