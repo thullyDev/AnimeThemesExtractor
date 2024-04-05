@@ -1,4 +1,5 @@
+from typing import Any
 from decouple import config
 
-SQL_URL = config("SQL_URL")
+SQL_URL: Any = config("SQL_URL")
 
