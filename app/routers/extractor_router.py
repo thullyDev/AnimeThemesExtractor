@@ -52,7 +52,7 @@ async def process_anime(anime: Dict[str, Any]) -> Optional[Dict[str, Any]]:
      data["at_id"] = anime_theme["id"] 
      data["slug"] = anime_theme["slug"] 
 
-     anime_instance: SQLModel = anime_table.sql_set(data)
+     anime_instance: SQLModel = await anime_table.sql_set(data)
      songs: List[Dict[str, Any]] = []
 
      anime_id = anime_instance.id
